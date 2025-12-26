@@ -1,17 +1,7 @@
-# Disposable-Kali                                          
+# Disposable-Peppermint
 
-This project contains a vagrant file that spins up a Kali virtual machine (using Virtual Box) with a configurabe list of customizable modifications such as:
-
-- changing "vagrant ssh" to use root 
-- adding swap space
-- setting BASH aliases
-- adding extra wordlists
-- installing wine
-- update & dist-upgrade
-- prepping metasploit
-- cloning useful git repos like AutoBlue and AutoRecon
-- installing common exploit dependecies and mingw
-- setting up UFW
+This project contains a vagrant file that spins up a Peppermint virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
+It derives from [dalvaro74/Peppermint-2023](https://portal.cloud.hashicorp.com/vagrant/discover/dalvaro74/Peppermint-2023), hence is localized to Spanish.
 
 ## Prerequisites
 
@@ -22,17 +12,24 @@ You'll need to have the following ready before you can use this:
 
 ## Installing
 
-- Clone this repo or simple download the [Vagrantfile]() to a directory
+- Clone this repo
 - Navigate to the directory, open Vagrantfile in your favorite editor to review/customize settings
+- Optionally add proprietary payloads through `scripts/setup.pp`, `scripts/setup-user.pp`
+- To change the keyboard layout, your `scripts/setup.pp` could do like so, where `de` is an exemplary choice which may or may not suit your needs:
+
+```
+sed -i 's/#display-setup-script=/display-setup-script=setxkbmap de/g' /etc/lightdm/lightdm.conf
+```
+
 - From a command shell, start the VM.  The first time this runs will take some time doing provisioning.
 
 ```
 vagrant up
 ```
 
-- Vagrant will download the base Kali box, configure the VM in virtualbox, run provisioning scripts.  The first time this runs this can take some time but should not require any interaction.
+- Vagrant will download the base Peppermint box, configure the VM in virtualbox, run provisioning scripts.  The first time this runs this can take some time but should not require any interaction.
 
-- Login, change the root password and use Kali!
+- Login, change the root password as per your security requirements and use Peppermint!
 
 ```
 vagrant ssh
