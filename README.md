@@ -23,6 +23,13 @@ You'll need to have the following ready before you can use this:
 crudini --set /etc/lightdm/lightdm.conf "Seat:*" display-setup-script "setxkbmap de"
 ```
 
+- Two more such commands in `scripts/setup.pp` would let you bypass the login prompt:
+
+```
+crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user vagrant
+crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user-timeout 0
+```
+
 - To localize everything back to English, your `scripts/setup.pp` should include this:
 
 ```
