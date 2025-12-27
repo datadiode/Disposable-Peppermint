@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Wine wants a display to create windows
-Xvfb :10 -ac -screen 0 1024x768x24 &
-export DISPLAY=:10
+Xvfb $DISPLAY -ac -screen 0 1024x768x24 &
 
 # Prepare wineprefix
 wine wineboot

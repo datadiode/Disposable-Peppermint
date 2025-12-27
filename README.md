@@ -1,3 +1,5 @@
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+
 # Disposable-Peppermint
 
 This project contains a vagrant file that spins up a Peppermint virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
@@ -18,7 +20,15 @@ You'll need to have the following ready before you can use this:
 - To change the keyboard layout, your `scripts/setup.pp` could do like so, where `de` is an exemplary choice which may or may not suit your needs:
 
 ```
-sed -i 's/#display-setup-script=/display-setup-script=setxkbmap de/g' /etc/lightdm/lightdm.conf
+crudini --set /etc/lightdm/lightdm.conf "Seat:*" display-setup-script "setxkbmap de"
+```
+
+- To localize everything back to English, your `scripts/setup.pp` should include this:
+
+```
+sudo update-locale "LANG=en_US.UTF-8"
+sudo locale-gen --purge "en_US.UTF-8"
+sudo dpkg-reconfigure --frontend noninteractive locales
 ```
 
 - From a command shell, start the VM.  The first time this runs will take some time doing provisioning.

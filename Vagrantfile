@@ -33,7 +33,7 @@ VM_MEMORY = "4096"
 VM_CPUS = "2"
 
 # VM_SHARED_FOLDER_ENABLE: set to false to disable the shared folder between host and guest
-VM_SHARED_FOLDER_ENABLE = true
+VM_SHARED_FOLDER_ENABLE = false
 VM_SHARED_FOLDER_HOST_PATH = "d:/shared"
 VM_SHARED_FOLDER_GUEST_PATH = "/mnt/shared"
 
@@ -60,6 +60,7 @@ Vagrant.configure("2") do |config|
     peppermint.vm.hostname = VM_NAME
     peppermint.ssh.forward_agent = true
     peppermint.ssh.forward_x11 = true
+    peppermint.vm.synced_folder '.', '/vagrant', disabled: true
 
     # this allows "vagrant up" to work normally using the vagrant user
     # but if "vagrant ssh", then the root user will be used
@@ -95,8 +96,8 @@ Vagrant.configure("2") do |config|
     peppermint.vm.provision "shell", keep_color: true, name: "setup.sh", path: "scripts/setup.sh"
     peppermint.vm.provision "shell", keep_color: true, name: "setup.pp", path: "scripts/setup.pp"
 
-    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.sh", path: "scripts/setup-user.sh", privileged: false
-    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.pp", path: "scripts/setup-user.pp", privileged: false
+    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.sh", path: "scripts/setup-user.sh", privileged: false, env: {"DISPLAY" => ":10"}
+    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.pp", path: "scripts/setup-user.pp", privileged: false, env: {"DISPLAY" => ":10"}
 
     peppermint.vm.post_up_message = $msg
     

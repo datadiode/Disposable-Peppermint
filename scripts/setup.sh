@@ -11,6 +11,7 @@ apt-get update
 # apt-get upgrade -y
 
 # Add essential packages
+apt-get install -y crudini
 apt-get install -y cabextract
 apt-get install -y xvfb
 
