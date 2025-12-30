@@ -3,13 +3,13 @@
 # Disposable-Peppermint
 
 This project contains a vagrant file that spins up a Peppermint virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
-It derives from [dalvaro74/Peppermint-2023](https://portal.cloud.hashicorp.com/vagrant/discover/dalvaro74/Peppermint-2023), hence is localized to Spanish.
+It derives from [datadiode/Peppermint-2025](https://portal.cloud.hashicorp.com/vagrant/discover/datadiode/Peppermint-2025), hence is localized to Spanish.
 
 ## Prerequisites
 
 You'll need to have the following ready before you can use this:
 
-- [VirtualBox 6](https://www.virtualbox.org/) installed and working
+- [VirtualBox 7.2.4](https://www.virtualbox.org/) installed and working
 - [Vagrant 2.x](https://www.vagrantup.com/) installed and working 
 
 ## Installing
