@@ -43,7 +43,7 @@ SWAP_ADD = false
 SWAP_ADD_GB = 4
 
 # WINETRICKS_VERBS: specify the winetricks verbs to apply to the wine prefix
-WINETRICKS_VERBS = "vcrun2019"
+WINETRICKS_VERBS = "vcrun2019 win10"
 
 # SSH_INSERT_KEY: if enabled, will replace the insecure bootstrapping key
 SSH_INSERT_KEY = false

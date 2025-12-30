@@ -38,6 +38,12 @@ sudo locale-gen --purge "en_US.UTF-8"
 sudo dpkg-reconfigure --frontend noninteractive locales
 ```
 
+- To keep the screen unlocked during idleness, your `scripts/setup-user.pp` should include this:
+
+```
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true -n -t bool
+```
+
 - From a command shell, start the VM.  The first time this runs will take some time doing provisioning.
 
 ```
