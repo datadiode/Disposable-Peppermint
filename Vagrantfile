@@ -42,6 +42,12 @@ VM_SHARED_FOLDER_GUEST_PATH = "/mnt/shared"
 SWAP_ADD = false
 SWAP_ADD_GB = 4
 
+# WINETRICKS_VERBS: specify the winetricks verbs to apply to the wine prefix
+WINETRICKS_VERBS = "vcrun2015 win10"
+
+# SSH_INSERT_KEY: if enabled, will replace the insecure bootstrapping key
+SSH_INSERT_KEY = false
+
 ############################################################
 # DO NOT ALTER BELOW HERE
 ############################################################
@@ -60,6 +66,7 @@ Vagrant.configure("2") do |config|
     peppermint.vm.hostname = VM_NAME
     peppermint.ssh.forward_agent = true
     peppermint.ssh.forward_x11 = true
+    peppermint.ssh.insert_key = SSH_INSERT_KEY
     peppermint.vm.synced_folder '.', '/vagrant', disabled: true
 
     # this allows "vagrant up" to work normally using the vagrant user
@@ -96,7 +103,7 @@ Vagrant.configure("2") do |config|
     peppermint.vm.provision "shell", keep_color: true, name: "setup.sh", path: "scripts/setup.sh"
     peppermint.vm.provision "shell", keep_color: true, name: "setup.pp", path: "scripts/setup.pp"
 
-    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.sh", path: "scripts/setup-user.sh", privileged: false, env: {"DISPLAY" => ":10"}
+    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.sh", path: "scripts/setup-user.sh", privileged: false, env: {"DISPLAY" => ":10", "WINETRICKS_VERBS" => WINETRICKS_VERBS}
     peppermint.vm.provision "shell", keep_color: true, name: "setup-user.pp", path: "scripts/setup-user.pp", privileged: false, env: {"DISPLAY" => ":10"}
 
     peppermint.vm.post_up_message = $msg

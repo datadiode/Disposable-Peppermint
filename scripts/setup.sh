@@ -13,6 +13,7 @@ apt-get update
 # Add essential packages
 apt-get install -y crudini
 apt-get install -y cabextract
+apt-get install -y p7zip-full
 apt-get install -y xvfb
 
 # Add packages for Windows Emulation
