@@ -42,11 +42,17 @@ VM_SHARED_FOLDER_GUEST_PATH = "/mnt/shared"
 SWAP_ADD = false
 SWAP_ADD_GB = 4
 
-# WINETRICKS_VERBS: specify the winetricks verbs to apply to the wine prefix
-WINETRICKS_VERBS = "vcrun2019 win10"
-
 # SSH_INSERT_KEY: if enabled, will replace the insecure bootstrapping key
 SSH_INSERT_KEY = false
+
+# SHELL_ENV: environment to pass to shell provisioners
+SHELL_ENV =
+{
+    # The display number to use for creating a virtual display
+    "DISPLAY" => ":10",
+    # The winetricks verbs to apply to the wine prefix
+    "WINETRICKS_VERBS" => "vcrun2019 win10"
+}
 
 ############################################################
 # DO NOT ALTER BELOW HERE
@@ -68,6 +74,11 @@ Vagrant.configure("2") do |config|
     peppermint.ssh.forward_x11 = true
     peppermint.ssh.insert_key = SSH_INSERT_KEY
     peppermint.vm.synced_folder '.', '/vagrant', disabled: true
+
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      peppermint.vbguest.auto_update = false
+      peppermint.vbguest.no_remote = true
+    end
 
     # this allows "vagrant up" to work normally using the vagrant user
     # but if "vagrant ssh", then the root user will be used
@@ -100,14 +111,16 @@ Vagrant.configure("2") do |config|
       peppermint.vm.provision "shell", keep_color: true, name: "swap_add.sh", path: "scripts/swap_add.sh", args: SWAP_ADD_GB
     end
 
-    peppermint.vm.provision "shell", keep_color: true, name: "setup.sh", path: "scripts/setup.sh"
-    peppermint.vm.provision "shell", keep_color: true, name: "setup.pp", path: "scripts/setup.pp"
+    peppermint.vm.provision "shell", keep_color: true, env: SHELL_ENV, name: "setup.sh", path: "scripts/setup.sh"
+    peppermint.vm.provision "shell", keep_color: true, env: SHELL_ENV, name: "setup.pp", path: "scripts/setup.pp"
 
-    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.sh", path: "scripts/setup-user.sh", privileged: false, env: {"DISPLAY" => ":10", "WINETRICKS_VERBS" => WINETRICKS_VERBS}
-    peppermint.vm.provision "shell", keep_color: true, name: "setup-user.pp", path: "scripts/setup-user.pp", privileged: false, env: {"DISPLAY" => ":10"}
+    peppermint.vm.provision "shell", keep_color: true, env: SHELL_ENV, name: "setup-user.sh", path: "scripts/setup-user.sh", privileged: false
+    peppermint.vm.provision "shell", keep_color: true, env: SHELL_ENV, name: "setup-user.pp", path: "scripts/setup-user.pp", privileged: false
+
+    peppermint.vm.provision "shell", reboot: true
 
     peppermint.vm.post_up_message = $msg
-    
+
   end
 
 end
