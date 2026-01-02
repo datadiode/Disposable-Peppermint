@@ -1,15 +1,15 @@
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
-# Disposable-Peppermint
+# Disposable-PepperMiX
 
-This project contains a vagrant file that spins up a Peppermint virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
-It derives from [dalvaro74/Peppermint-2023](https://portal.cloud.hashicorp.com/vagrant/discover/dalvaro74/Peppermint-2023), hence is localized to Spanish.
+This project contains a vagrant file that spins up a Peppermint or MX virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
+For evolutionary reasons, the referenced base images tend to be localized to Spanish or German.
 
 ## Prerequisites
 
 You'll need to have the following ready before you can use this:
 
-- [VirtualBox 6](https://www.virtualbox.org/) installed and working
+- [VirtualBox](https://www.virtualbox.org/) installed and working
 - [Vagrant 2.x](https://www.vagrantup.com/) installed and working 
 
 ## Installing

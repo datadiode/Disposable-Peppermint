@@ -1,5 +1,5 @@
-# Disposable Peppermint Linux                                                                                                                       
-# Repo: https://github.com/datadiode/Disposable-Peppermint
+# Disposable Peppermint/MX Linux
+# Repo: https://github.com/datadiode/Disposable-PepperMiX
 # PA: https://github.com/stevemcilwain/Disposable-Kali
 # Copyright (c) Steve Mcilwain et al.
 # SPDX-License-Identifier: MIT
@@ -8,21 +8,22 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# capture the vagrant command passed in as first argument
-VAGRANT_COMMAND = ARGV[0]
-
 ############################################################
 # VM and Guest Settings - Review and Customize
 ############################################################
 
-# BOX_PATH:  the name or full url of the base box to use
-BOX_PATH = "dalvaro74/Peppermint-2023"
+# BOX_PATH: map creatable boxes to base box paths
+BOX_PATH =
+{
+    "Peppermint" => "dalvaro74/Peppermint-2023",
+    "Peppermint-2023" => "dalvaro74/Peppermint-2023",
+    "MX" => "datadiode/MX-23",
+    "MX-23" => "datadiode/MX-23",
+    nil => "dalvaro74/Peppermint-2023"
+}
 
 # BOX_UPDATE: set to true to check for base box updates 
 BOX_UPDATE = false
-
-# VM_NAME: set the name of the virtual machine and host name
-VM_NAME = "peppermint-2023"
 
 # VM_MEMORY: specify the amount of memory to allocate to the VM
 #VM_MEMORY = "8192"
@@ -65,11 +66,10 @@ FileUtils.touch 'scripts/setup-user.pp'
 # Configure with API version 2
 Vagrant.configure("2") do |config|
 
-  config.vm.define "peppermint", primary: true do |peppermint|
+  config.vm.define ARGV[1] ? ARGV[1] : "Default", primary: true do |peppermint|
 
-    peppermint.vm.box = BOX_PATH
+    peppermint.vm.box = BOX_PATH[ARGV[1] ? ARGV[1].split(".")[0] : nil]
     peppermint.vm.box_check_update = BOX_UPDATE
-    peppermint.vm.hostname = VM_NAME
     peppermint.ssh.forward_agent = true
     peppermint.ssh.forward_x11 = true
     peppermint.ssh.insert_key = SSH_INSERT_KEY
@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
 
     # this allows "vagrant up" to work normally using the vagrant user
     # but if "vagrant ssh", then the root user will be used
-    if VAGRANT_COMMAND == "ssh" 
+    if ARGV[0] == "ssh" 
       peppermint.ssh.username = "root"
     end
 
@@ -90,7 +90,7 @@ Vagrant.configure("2") do |config|
 
     peppermint.vm.provider :virtualbox do |vbox|
       vbox.gui = true
-      vbox.name = VM_NAME
+      vbox.name = ARGV[1]
       vbox.memory = VM_MEMORY
       vbox.cpus = VM_CPUS
     end
@@ -128,7 +128,7 @@ end
 $msg = <<MSG
 
 -------------------------------------------------------------
-Disposable Peppermint is hopefully up and running :)
+Disposable Peppermint/MX is hopefully up and running :)
 -------------------------------------------------------------
 \n
 
