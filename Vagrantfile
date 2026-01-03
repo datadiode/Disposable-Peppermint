@@ -1,4 +1,4 @@
-# Disposable Peppermint/MX Linux
+# Disposable Peppermint/MX/Sparky Linux
 # Repo: https://github.com/datadiode/Disposable-PepperMiX
 # PA: https://github.com/stevemcilwain/Disposable-Kali
 # Copyright (c) Steve Mcilwain et al.
@@ -19,6 +19,8 @@ BOX_PATH =
     "Peppermint-2025" => "datadiode/Peppermint-2025",
     "MX" => "datadiode/MX-25",
     "MX-25" => "datadiode/MX-25",
+    "Sparky" => "datadiode/Sparky-8",
+    "Sparky-8" => "datadiode/Sparky-8",
     nil => "datadiode/Peppermint-2025"
 }
 
@@ -127,9 +129,9 @@ end
 
 $msg = <<MSG
 
--------------------------------------------------------------
-Disposable Peppermint/MX is hopefully up and running :)
--------------------------------------------------------------
+----------------------------------------------------------------
+Disposable Peppermint/MX/Sparky is hopefully up and running :)
+----------------------------------------------------------------
 \n
 
 MSG
