@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -f "$HOME/.i18n" ]; then
+    . "$HOME/.i18n"
+fi
+. /etc/xdg/xfce4/xinitrc

@@ -3,7 +3,7 @@
 # Disposable-PepperMiX
 
 This project contains a vagrant file that spins up a Peppermint or MX virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
-For evolutionary reasons, the referenced base images tend to be localized to Spanish or German.
+For evolutionary reasons, the referenced base images tend to be localized to Spanish or German. To provide a consistent outcome, the provisioning will localize the vagrant account back to English.
 
 ## Prerequisites
 
@@ -28,14 +28,6 @@ crudini --set /etc/lightdm/lightdm.conf "Seat:*" display-setup-script "setxkbmap
 ```
 crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user vagrant
 crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user-timeout 0
-```
-
-- To localize everything back to English, your `scripts/setup.pp` should include this:
-
-```
-sudo update-locale "LANG=en_US.UTF-8"
-sudo locale-gen --purge "en_US.UTF-8"
-sudo dpkg-reconfigure --frontend noninteractive locales
 ```
 
 - To keep the screen unlocked during idleness, your `scripts/setup-user.pp` should include this:

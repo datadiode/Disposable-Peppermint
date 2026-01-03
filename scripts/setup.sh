@@ -10,7 +10,9 @@ apt-get install -y crudini cabextract p7zip-full xvfb
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
   echo ">>> Installing Wine: Sparky"
   apt-get remove -y sparky-aptus-upgrade-checker
-  apt-get install -y --allow-downgrades wine wine32 wine64 winetricks libsvtav1enc2:amd64=2.3.0+dfsg-1
+  # libsvtav1enc2 may need a downgrade, but first try as is
+  apt-get install -y wine wine32 wine64 winetricks || \
+  apt-get install -y --allow-downgrades wine wine32 wine64 winetricks libsvtav1enc2=2.3.0+dfsg-1
 else
   echo ">>> Installing Wine: WineHQ"
   # https://www.dropvps.com/blog/install-wine-on-debian-13/
