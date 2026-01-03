@@ -1,4 +1,4 @@
-# Disposable Peppermint/MX Linux
+# Disposable Peppermint/MX/Sparky Linux
 # Repo: https://github.com/datadiode/Disposable-PepperMiX
 # PA: https://github.com/stevemcilwain/Disposable-Kali
 # Copyright (c) Steve Mcilwain et al.
@@ -19,6 +19,8 @@ BOX_PATH =
     "Peppermint-2023" => "dalvaro74/Peppermint-2023",
     "MX" => "datadiode/MX-23",
     "MX-23" => "datadiode/MX-23",
+    "Sparky" => "datadiode/Sparky-7",
+    "Sparky-7" => "datadiode/Sparky-7",
     nil => "dalvaro74/Peppermint-2023"
 }
 
@@ -49,6 +51,10 @@ SSH_INSERT_KEY = false
 # SHELL_ENV: environment to pass to shell provisioners
 SHELL_ENV =
 {
+    # Initial user locale
+    "LANGUAGE" => "en_US.utf8",
+    "LANG" => "en_US.utf8",
+    "LC_ALL" => "en_US.utf8",
     # The display number to use for creating a virtual display
     "DISPLAY" => ":10",
     # The winetricks verbs to apply to the wine prefix
@@ -127,9 +133,9 @@ end
 
 $msg = <<MSG
 
--------------------------------------------------------------
-Disposable Peppermint/MX is hopefully up and running :)
--------------------------------------------------------------
+----------------------------------------------------------------
+Disposable Peppermint/MX/Sparky is hopefully up and running :)
+----------------------------------------------------------------
 \n
 
 MSG
