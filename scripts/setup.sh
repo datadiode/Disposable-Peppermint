@@ -40,3 +40,14 @@ fi
 
 # Get fix for https://github.com/Winetricks/winetricks/issues/2344
 wget -O /usr/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/00427b67de70bfefd282d0abc7edd1daa442e73e/src/winetricks
+
+# Enable auto login
+if $AUTO_LOGIN; then
+  crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user vagrant
+  crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user-timeout 0
+fi
+
+# On seven-sisters, use files for trixie if such exist
+if [[ "$(lsb_release -si)" == "Sparky" ]]; then
+  ln -s /home/vagrant/files/trixie /home/vagrant/files/seven-sisters
+fi

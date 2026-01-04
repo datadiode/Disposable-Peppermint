@@ -17,25 +17,6 @@ You'll need to have the following ready before you can use this:
 - Clone this repo
 - Navigate to the directory, open Vagrantfile in your favorite editor to review/customize settings
 - Optionally add proprietary payloads through `scripts/setup.pp`, `scripts/setup-user.pp`
-- To change the keyboard layout, your `scripts/setup.pp` could do like so, where `de` is an exemplary choice which may or may not suit your needs:
-
-```
-crudini --set /etc/lightdm/lightdm.conf "Seat:*" display-setup-script "setxkbmap de"
-```
-
-- Two more such commands in `scripts/setup.pp` would let you bypass the login prompt:
-
-```
-crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user vagrant
-crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user-timeout 0
-```
-
-- To keep the screen unlocked during idleness, your `scripts/setup-user.pp` should include this:
-
-```
-xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s true -n -t bool
-```
-
 - From a command shell, start the VM.  The first time this runs will take some time doing provisioning.
 
 ```
@@ -51,22 +32,28 @@ vagrant ssh
 ```
 
 ## Usage
-You can use your VM headless or open the virtualbox gui and attach to the running vm to login with a graphical UI.  X11 forwarding is an option in the Vagrantfile for headless usage, easier if your host is linux.
+You can use your VM headless or open the virtualbox gui and attach to the running VM to login with a graphical UI.  X11 forwarding is an option in the Vagrantfile for headless usage, easier if your host is linux.
+
+The VM names understood by the Vagrantfile are:  
+`Peppermint`, `Peppermint-2025`, `MX`, `MX-25`, `Sparky`, `Sparky-8`  
+The version-specific names help distinguish VMs created from different branches of this repository, but are otherwise equivalent to the version-neutral names.  
+Multiple alike machines can be identified through an optional dot suffix (or several ones).  
+Omitting the name causes the Vagrantfile to produce a Peppermint box with a name chosen at the discretion of the framework.
 
 Common VM lifecycle
 ```
 #start vm
-vagrant up
+vagrant up [ Peppermint[-2025] | MX[-25] | Sparky[-8] ]
 
 #login
-vagrant ssh
+vagrant ssh [ Peppermint[-2025] | MX[-25] | Sparky[-8] ]
 
 #stop the vm
-vagrant halt
+vagrant halt [ Peppermint[-2025] | MX[-25] | Sparky[-8] ]
 
 #when you want to start with a clean install
-vagrant destroy
-vagrant up
+vagrant destroy [ Peppermint[-2025] | MX[-25] | Sparky[-8] ]
+vagrant up [ Peppermint[-2025] | MX[-25] | Sparky[-8] ]
 ```
 
 ## Contributing
