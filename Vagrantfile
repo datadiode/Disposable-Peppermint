@@ -51,6 +51,12 @@ SSH_INSERT_KEY = false
 # SHELL_ENV: environment to pass to shell provisioners
 SHELL_ENV =
 {
+    # Whether to bypass the logon dialog
+    "AUTO_LOGIN" => "true",
+    # Whether to keep the screen unlocked during idleness
+    "PRESENTATION_MODE" => "true",
+    # Keyboard language
+    "KEYBOARD_LANGUAGE" => "de",
     # Initial user locale
     "LANGUAGE" => "en_US.utf8",
     "LANG" => "en_US.utf8",
@@ -99,6 +105,7 @@ Vagrant.configure("2") do |config|
       vbox.name = ARGV[1]
       vbox.memory = VM_MEMORY
       vbox.cpus = VM_CPUS
+      vbox.customize ["modifyvm", :id, "--ostype", "Debian_64"]
     end
 
     if VM_SHARED_FOLDER_ENABLE

@@ -1,10 +1,14 @@
 #!/bin/bash
 
+# Set presentation mode as configured in Vagrantfile
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s $PRESENTATION_MODE -n -t bool
+
 # Create .i18n from what is found in current environment
 cat << EOF > .i18n
 export LANGUAGE=$LANGUAGE
 export LANG=$LANG
 export LC_ALL=$LC_ALL
+setxkbmap $KEYBOARD_LANGUAGE
 EOF
 
 # Source .i18n from .config/xfce4/xinitrc
