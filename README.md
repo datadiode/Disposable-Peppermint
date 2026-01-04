@@ -1,8 +1,8 @@
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
-# Disposable-PepperMiX
+# Disposable-PepperMiXy
 
-This project contains a vagrant file that spins up a Peppermint or MX virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
+This project contains a vagrant file that spins up a Peppermint or MX or Sparky virtual machine (using Virtual Box) with a ready-to-go dual-bitness wine prefix, alongside with customizable modifications.
 For evolutionary reasons, the referenced base images tend to be localized to Spanish or German. To provide a consistent outcome, the provisioning will localize the vagrant account back to English.
 
 ## Prerequisites

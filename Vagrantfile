@@ -1,5 +1,5 @@
 # Disposable Peppermint/MX/Sparky Linux
-# Repo: https://github.com/datadiode/Disposable-PepperMiX
+# Repo: https://github.com/datadiode/Disposable-PepperMiXy
 # PA: https://github.com/stevemcilwain/Disposable-Kali
 # Copyright (c) Steve Mcilwain et al.
 # SPDX-License-Identifier: MIT
