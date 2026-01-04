@@ -78,9 +78,9 @@ FileUtils.touch 'scripts/setup-user.pp'
 # Configure with API version 2
 Vagrant.configure("2") do |config|
 
-  config.vm.define ARGV[1] ? ARGV[1] : "Default", primary: true do |peppermint|
+  config.vm.define ARGV[1] ? ARGV[1] : BOX_PATH.keys[0], primary: true do |peppermint|
 
-    peppermint.vm.box = BOX_PATH[ARGV[1] ? ARGV[1].split(".")[0] : nil]
+    peppermint.vm.box = BOX_PATH[ARGV[1] ? ARGV[1].split(".")[0] : BOX_PATH.keys[0]]
     peppermint.vm.box_check_update = BOX_UPDATE
     peppermint.ssh.forward_agent = true
     peppermint.ssh.forward_x11 = true
@@ -102,7 +102,7 @@ Vagrant.configure("2") do |config|
 
     peppermint.vm.provider :virtualbox do |vbox|
       vbox.gui = true
-      vbox.name = ARGV[1]
+      vbox.name = ARGV[1] ? ARGV[1] : BOX_PATH.keys[0]
       vbox.memory = VM_MEMORY
       vbox.cpus = VM_CPUS
       vbox.customize ["modifyvm", :id, "--ostype", "Debian_64"]
