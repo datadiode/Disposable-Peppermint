@@ -38,7 +38,7 @@ The VM names understood by the Vagrantfile are:
 `Peppermint`, `Peppermint-2025`, `MX`, `MX-25`, `Sparky`, `Sparky-8`  
 The version-specific names help distinguish VMs created from different branches of this repository, but are otherwise equivalent to the version-neutral names.  
 Multiple alike machines can be identified through an optional dot suffix (or several ones).  
-Omitting the name causes the Vagrantfile to produce a Peppermint box with a name chosen at the discretion of the framework.
+Omitting the name causes the Vagrantfile to produce a Peppermint box with a version-neutral name.
 
 Common VM lifecycle
 ```
