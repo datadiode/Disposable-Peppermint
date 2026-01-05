@@ -20,8 +20,7 @@ BOX_PATH =
     "MX" => "datadiode/MX-23",
     "MX-23" => "datadiode/MX-23",
     "Sparky" => "datadiode/Sparky-7",
-    "Sparky-7" => "datadiode/Sparky-7",
-    nil => "dalvaro74/Peppermint-2023"
+    "Sparky-7" => "datadiode/Sparky-7"
 }
 
 # BOX_UPDATE: set to true to check for base box updates 
@@ -78,9 +77,11 @@ FileUtils.touch 'scripts/setup-user.pp'
 # Configure with API version 2
 Vagrant.configure("2") do |config|
 
-  config.vm.define ARGV[1] ? ARGV[1] : BOX_PATH.keys[0], primary: true do |peppermint|
+  name = ARGV[1] ? ARGV[1] : BOX_PATH.keys[0]
 
-    peppermint.vm.box = BOX_PATH[ARGV[1] ? ARGV[1].split(".")[0] : BOX_PATH.keys[0]]
+  config.vm.define name, primary: true do |peppermint|
+
+    peppermint.vm.box = BOX_PATH[name.split(".")[0]]
     peppermint.vm.box_check_update = BOX_UPDATE
     peppermint.ssh.forward_agent = true
     peppermint.ssh.forward_x11 = true
@@ -102,7 +103,7 @@ Vagrant.configure("2") do |config|
 
     peppermint.vm.provider :virtualbox do |vbox|
       vbox.gui = true
-      vbox.name = ARGV[1] ? ARGV[1] : BOX_PATH.keys[0]
+      vbox.name = name
       vbox.memory = VM_MEMORY
       vbox.cpus = VM_CPUS
       vbox.customize ["modifyvm", :id, "--ostype", "Debian_64"]
