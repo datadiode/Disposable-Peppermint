@@ -4,7 +4,7 @@
 dpkg --add-architecture i386 && apt-get update
 
 # Add essential packages
-apt-get install -y crudini cabextract p7zip-full xvfb
+apt-get install -y crudini cabextract p7zip-full xvfb cpu-x
 
 # Disable automatic updates
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
@@ -24,3 +24,5 @@ fi
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
   ln -s /home/vagrant/files/bookworm /home/vagrant/files/orion-belt
 fi
+
+exit 0
