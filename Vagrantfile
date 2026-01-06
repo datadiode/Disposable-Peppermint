@@ -20,8 +20,7 @@ BOX_PATH =
     "MX" => "datadiode/MX-25",
     "MX-25" => "datadiode/MX-25",
     "Sparky" => "datadiode/Sparky-8",
-    "Sparky-8" => "datadiode/Sparky-8",
-    nil => "datadiode/Peppermint-2025"
+    "Sparky-8" => "datadiode/Sparky-8"
 }
 
 # BOX_UPDATE: set to true to check for base box updates 
