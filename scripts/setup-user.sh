@@ -24,6 +24,9 @@ Xvfb $DISPLAY -ac -screen 0 1024x768x24 &
 wine wineboot
 winetricks --unattended $WINETRICKS_VERBS
 
+wget $YSETUP -O ysetup.exe
+wine ysetup.exe -systempath "C:\Program Files\Yori"
+
 # Create desktop icons
 cp /usr/share/applications/*cpu-x.desktop Desktop/
 

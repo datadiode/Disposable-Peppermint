@@ -63,7 +63,9 @@ SHELL_ENV =
     # The display number to use for creating a virtual display
     "DISPLAY" => ":10",
     # The winetricks verbs to apply to the wine prefix
-    "WINETRICKS_VERBS" => "vcrun2015 win10"
+    "WINETRICKS_VERBS" => "vcrun2015 win10",
+    # Yori shell download URL
+    "YSETUP" => "https://github.com/datadiode/yori/releases/download/latest-master/ysetup-v2.5-53-g1404208-x64.exe"
 }
 
 ############################################################
