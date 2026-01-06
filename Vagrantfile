@@ -131,7 +131,14 @@ Vagrant.configure("2") do |config|
     peppermint.vm.provision "shell", keep_color: true, env: SHELL_ENV, name: "setup-user.sh", path: "scripts/setup-user.sh", privileged: false
     peppermint.vm.provision "shell", keep_color: true, env: SHELL_ENV, name: "setup-user.pp", path: "scripts/setup-user.pp", privileged: false
 
-    peppermint.vm.provision "shell", reboot: true
+    # Finalization
+
+    peppermint.vm.provision "shell", privileged: false, reboot: true, inline: <<-EOF
+      # Establish trust in whatever desktop icons may have been created 
+      chmod +x Desktop/*.desktop
+      for f in Desktop/*.desktop; do dbus-launch gio set -t string "$f" metadata::xfce-exe-checksum "$(sha256sum "$f" | cut -c -64)"; done
+      exit 0
+    EOF
 
     peppermint.vm.post_up_message = $msg
 

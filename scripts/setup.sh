@@ -4,7 +4,7 @@
 dpkg --add-architecture i386 && apt-get update
 
 # Add essential packages
-apt-get install -y crudini cabextract p7zip-full xvfb
+apt-get install -y crudini cabextract p7zip-full xvfb cpu-x
 
 # Add packages for Windows Emulation, and while at it, disable automatic updates
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
@@ -51,3 +51,5 @@ fi
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
   ln -s /home/vagrant/files/trixie /home/vagrant/files/seven-sisters
 fi
+
+exit 0

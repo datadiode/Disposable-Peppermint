@@ -23,3 +23,8 @@ Xvfb $DISPLAY -ac -screen 0 1024x768x24 &
 # Prepare wineprefix
 wine wineboot
 winetricks --unattended $WINETRICKS_VERBS
+
+# Create desktop icons
+cp /usr/share/applications/*cpu-x.desktop Desktop/
+
+exit 0
