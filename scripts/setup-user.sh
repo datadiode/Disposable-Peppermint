@@ -15,7 +15,10 @@ EOF
 mkdir -p .config/xfce4
 cp /home/vagrant/files/xinitrc .config/xfce4/
 
+# Recreate .config/user-dirs.* without asking
+echo "en_US" > .config/user-dirs.locale
 xdg-user-dirs-update --force
+xdg-user-dirs-gtk-update --force
 
 # Wine wants a display to create windows
 Xvfb $DISPLAY -ac -screen 0 1024x768x24 &
