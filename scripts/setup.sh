@@ -4,7 +4,7 @@
 dpkg --add-architecture i386 && apt-get update
 
 # Add essential packages
-apt-get install -y crudini cabextract p7zip-full xvfb cpu-x
+apt-get install -y crudini cabextract p7zip-full xvfb cpu-x systemd-sysv devilspie2
 
 # Add packages for Windows Emulation, and while at it, disable automatic updates
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
@@ -46,6 +46,10 @@ if $AUTO_LOGIN; then
   crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user vagrant
   crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user-timeout 0
 fi
+
+# Disable session saving
+mkdir /etc/xdg/xfce4/kiosk
+crudini --set /etc/xdg/xfce4/kiosk/kioskrc "xfce4-session" SaveSession NONE
 
 # On seven-sisters, use files for trixie if such exist
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
