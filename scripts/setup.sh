@@ -24,6 +24,9 @@ fi
 mkdir /etc/xdg/xfce4/kiosk
 crudini --set /etc/xdg/xfce4/kiosk/kioskrc "xfce4-session" SaveSession NONE
 
+# Disable user-dirs update prompt
+crudini --set /etc/xdg/autostart/user-dirs-update-gtk.desktop "Desktop Entry" Hidden true
+
 # On orion-belt, use files for bookworm if such exist
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
   ln -s /home/vagrant/files/bookworm /home/vagrant/files/orion-belt

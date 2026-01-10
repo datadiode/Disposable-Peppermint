@@ -78,6 +78,13 @@ SHELL_ENV =
 FileUtils.touch 'scripts/setup.pp'
 FileUtils.touch 'scripts/setup-user.pp'
 
+SHELL_ENV.each_key do |key|
+  override = ENV["VAGRANT_SHELL_ENV_" + key]
+  if override
+    SHELL_ENV[key] = override
+  end
+end
+
 # Configure with API version 2
 Vagrant.configure("2") do |config|
 
