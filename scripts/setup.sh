@@ -4,7 +4,7 @@
 dpkg --add-architecture i386 && apt-get update
 
 # Add essential packages
-apt-get install -y crudini cabextract p7zip-full xvfb cpu-x
+apt-get install -y crudini cabextract p7zip-full xvfb cpu-x systemd-sysv devilspie2
 
 # Disable automatic updates
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then
@@ -19,6 +19,10 @@ if $AUTO_LOGIN; then
   crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user vagrant
   crudini --set /etc/lightdm/lightdm.conf "Seat:*" autologin-user-timeout 0
 fi
+
+# Disable session saving
+mkdir /etc/xdg/xfce4/kiosk
+crudini --set /etc/xdg/xfce4/kiosk/kioskrc "xfce4-session" SaveSession NONE
 
 # On orion-belt, use files for bookworm if such exist
 if [[ "$(lsb_release -si)" == "Sparky" ]]; then

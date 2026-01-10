@@ -60,6 +60,8 @@ SHELL_ENV =
     "LANGUAGE" => "en_US.utf8",
     "LANG" => "en_US.utf8",
     "LC_ALL" => "en_US.utf8",
+    # Action button title with placeholders for creation time
+    "CORNER_TEXT" => "[%F]",
     # The display number to use for creating a virtual display
     "DISPLAY" => ":10",
     # The winetricks verbs to apply to the wine prefix
